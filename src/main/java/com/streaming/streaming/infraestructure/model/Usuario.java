@@ -16,8 +16,8 @@ public class Usuario {
     private Long id;
 
     private String nombre;
-    private String email;
-    private String password;
+    private String correo;
+    private String contrasena;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Contenido> contenidos;

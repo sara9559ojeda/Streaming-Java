@@ -15,9 +15,9 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre;   // Free, Premium, Familiar
+    private String nombrePlan;  
     private double precio;
-    private int duracionDias; // duración en días
+    private int duracionDias; 
 
     @OneToMany(mappedBy = "plan")
     private List<Usuario> usuarios;
