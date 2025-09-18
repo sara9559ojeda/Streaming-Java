@@ -4,28 +4,24 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.streaming.streaming.infraestructure.model.Usuario;
+import com.streaming.streaming.domain.dto.UserDTO;
 import com.streaming.streaming.infraestructure.repository.UsuarioRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
 
 @RestController
-
 public class UsuarioController {
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public UsuarioController(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
-    
    
     @GetMapping("/obtener")
-    public List<Usuario> getAllUsuarios() {
-        return (List<Usuario>) usuarioRepository.findAll();
+    public List<UserDTO> getAllUsuarios() {
+        return (List<UserDTO>) usuarioRepository.getAll();
     }
-    public Usuario getUsuarioById(Long id) {
-        return usuarioRepository.findById(id).orElse(null);
-    }
+
 
 }
