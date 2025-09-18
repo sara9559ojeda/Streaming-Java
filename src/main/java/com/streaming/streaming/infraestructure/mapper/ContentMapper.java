@@ -1,8 +1,8 @@
 package com.streaming.streaming.infraestructure.mapper;
 
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.InheritInverseConfiguration;
 
 import com.streaming.streaming.domain.dto.ContentDTO;
 import com.streaming.streaming.infraestructure.model.Contenido;
@@ -19,10 +19,8 @@ public interface ContentMapper {
     ContentDTO toDTOContent(Contenido contenido);
 
     // DTO -> Entity
-    @Mapping(source = "title", target = "titulo")
-    @Mapping(source = "description", target = "descripcion")
-    @Mapping(source = "type", target = "tipo")
-    @Mapping(source = "genre", target = "genero")
-    @Mapping(source = "duration", target = "duracion")
+    @InheritInverseConfiguration
+    @Mapping(target = "id", ignore = true)       
+    @Mapping(target = "usuario", ignore = true) 
     Contenido toEntityContent(ContentDTO contentDTO);
 }
