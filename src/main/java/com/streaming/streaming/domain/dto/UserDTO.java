@@ -3,7 +3,7 @@ package com.streaming.streaming.domain.dto;
 public class UserDTO {
     private String name;
     private String email;
-    private String planName;
+    private PlanDTO planName;
     public String getName() {
         return name;
     }
@@ -16,10 +16,10 @@ public class UserDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getPlanName() {
+    public PlanDTO getPlanName() {
         return planName;
     }
-    public void setPlanName(String planName) {
+    public void setPlanName(PlanDTO planName) {
         this.planName = planName;
     }
     

@@ -26,7 +26,9 @@ public class UsuarioRepository implements IUserRepository {
     }
 
     @Override
-    public void save(UserDTO userDTO) {
-        // Implementation here
+    public UserDTO save(UserDTO userDTO) {
+        
+        Usuario usuario = usuarioCrudRepository.save(userMapper.toEntityUser(userDTO));
+        return userMapper.toDTOUser(usuario);
     }
 }

@@ -16,7 +16,7 @@ public interface UserMapper {
     // Entity -> DTO
     @Mapping(source = "correo", target = "email")
     @Mapping(source = "nombre", target = "name")
-    @Mapping(source = "plan.nombrePlan", target = "planName")
+    @Mapping(source = "plan", target = "planName")
     UserDTO toDTOUser(Usuario usuario);
     List<UserDTO> toDTOUsers(List<Usuario> usuario);
 
@@ -24,5 +24,6 @@ public interface UserMapper {
     @InheritInverseConfiguration
     @Mapping(target = "id", ignore = true)       
     @Mapping(target = "contenidos", ignore = true)  
+    Usuario toEntityUser(UserDTO userDTO);
     List<Usuario> toEntityUsers(List<UserDTO> userDTO);
 }

@@ -6,6 +6,6 @@ import com.streaming.streaming.domain.dto.UserDTO;
 
 public interface IUserRepository {
     List<UserDTO> getAll();
-    void save(UserDTO userDTO);
+    UserDTO save(UserDTO userDTO);
     
 }

@@ -14,11 +14,11 @@ public interface PlanMapper {
     @Mapping(source = "nombrePlan", target = "namePlan")
     @Mapping(source = "precio", target = "price")
     @Mapping(source = "duracionDias", target = "durationDays")
-    /*@Mapping(target = "usuarios", ignore = true) 
-    @Mapping(target = "id", ignore = true)     */  
+    @Mapping(source = "id", target = "id")
     PlanDTO toDTOPlan(Plan plan);
 
     @InheritInverseConfiguration
+    @Mapping(target = "usuarios", ignore = true) 
     Plan toEntityPlan(PlanDTO planDTO);
 }
 

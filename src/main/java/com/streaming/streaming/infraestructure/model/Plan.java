@@ -15,9 +15,10 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nombre_plan")
     private String nombrePlan;  
-    private double precio;
-    private int duracionDias; 
+    private Double precio;
+    private Integer duracionDias; 
 
     @OneToMany(mappedBy = "plan")
     private List<Usuario> usuarios;
