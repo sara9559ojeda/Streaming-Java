@@ -1,35 +1,34 @@
 package com.streaming.streaming.domain.dto;
 
 public class PlanDTO {
-    
     private Long id;
+    private String nombrePlan;
+    private Double precio;
+    private Integer duracionDias;
 
-    private String namePlan;  
-    private Double price;
-    private Integer durationDays;
+    // getters y setters
     public Long getId() {
         return id;
     }
     public void setId(Long id) {
         this.id = id;
     }
-    public String getNamePlan() {
-        return namePlan;
+    public String getNombrePlan() {
+        return nombrePlan;
     }
-    public void setNamePlan(String namePlan) {
-        this.namePlan = namePlan;
+    public void setNombrePlan(String nombrePlan) {
+        this.nombrePlan = nombrePlan;
     }
-    public Double getPrice() {
-        return price;
+    public Double getPrecio() {
+        return precio;
     }
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
-    public Integer getDurationDays() {
-        return durationDays;
+    public Integer getDuracionDias() {
+        return duracionDias;
     }
-    public void setDurationDays(Integer durationDays) {
-        this.durationDays = durationDays;
+    public void setDuracionDias(Integer duracionDias) {
+        this.duracionDias = duracionDias;
     }
-    
 }
