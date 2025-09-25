@@ -1,6 +1,7 @@
 package com.streaming.streaming.infraestructure.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,20 +16,32 @@ import com.streaming.streaming.infraestructure.model.Usuario;
 public class UsuarioRepository implements IUserRepository {
 
     @Autowired
-    private UsuarioCrudRepository usuarioCrudRepository; 
-    @Autowired 
-    private UserMapper userMapper;// Correct injection
+    private UsuarioCrudRepository crud;
+
+    @Autowired
+    private UserMapper mapper;
 
     @Override
     public List<UserDTO> getAll() {
-        List<Usuario> usuarios = (List<Usuario>) usuarioCrudRepository.findAll(); // Use the injected instance
-        return userMapper.toDTOUsers(usuarios);
+        List<Usuario> usuarios = (List<Usuario>) crud.findAll();
+        return mapper.toDTOUsers(usuarios);
     }
 
     @Override
     public UserDTO save(UserDTO userDTO) {
-        
-        Usuario usuario = usuarioCrudRepository.save(userMapper.toEntityUser(userDTO));
-        return userMapper.toDTOUser(usuario);
+        Usuario usuario = mapper.toEntityUser(userDTO);
+        Usuario saved = crud.save(usuario);
+        return mapper.toDTOUser(saved);
+    }
+
+    @Override
+    public Optional<UserDTO> getById(Long id) {
+        return crud.findById(id)
+                   .map(mapper::toDTOUser);
+    }
+
+    @Override
+    public void delete(Long id) {
+        crud.deleteById(id);
     }
 }
