@@ -44,4 +44,6 @@ public class UsuarioRepository implements IUserRepository {
     public void delete(Long id) {
         crud.deleteById(id);
     }
+
+
 }

@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.streaming.streaming.domain.dto.UserDTO;
-import com.streaming.streaming.infraestructure.repository.UsuarioRepository;
+import com.streaming.streaming.domain.service.UserService;
 
 @RestController
-@RequestMapping("/usuarios")  // ✅ prefijo común
+@RequestMapping("/usuarios")  
 public class UsuarioController {
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UserService userService;
 
     @GetMapping("/obtener")
     public List<UserDTO> getAllUsuarios() {
-        return usuarioRepository.getAll();
+        return userService.obtenerTodo();
     }
 
-    @GetMapping("/{id}")  // ✅ obtener usuario por id
+    @GetMapping("/{id}")  
     public Optional<UserDTO> getUsuarioById(@PathVariable Long id) {
-        return usuarioRepository.getById(id);
+        return userService.obtenerPorId();
     }
 
     @PostMapping("/")
     public UserDTO save(@RequestBody UserDTO userDTO) {
-        return usuarioRepository.save(userDTO);
+        return userService.guardar();
     }
 
-    @DeleteMapping("/{id}")  // ✅ eliminar usuario
+    @DeleteMapping("/{id}") 
     public void deleteUsuario(@PathVariable Long id) {
-        usuarioRepository.delete(id);
+        userService.eliminar();
     }
 }
