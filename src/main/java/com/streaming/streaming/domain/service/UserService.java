@@ -30,4 +30,6 @@ public class UserService {
     public void eliminar() {
         userRepository.delete(null);
     }
+
+    // agregar manejo de excepciones :v
 }

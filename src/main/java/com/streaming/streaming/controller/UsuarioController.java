@@ -33,11 +33,11 @@ public class UsuarioController {
 
     @PostMapping("/")
     public UserDTO save(@RequestBody UserDTO userDTO) {
-        return userService.guardar();
+        return userService.guardar(userDTO);
     }
 
     @DeleteMapping("/{id}") 
     public void deleteUsuario(@PathVariable Long id) {
-        userService.eliminar();
+        userService.eliminar(id);
     }
 }
