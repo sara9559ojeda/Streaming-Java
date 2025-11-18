@@ -28,7 +28,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")  
     public Optional<UserDTO> getUsuarioById(@PathVariable Long id) {
-        return userService.obtenerPorId();
+        return userService.obtenerPorId(id);
     }
 
     @PostMapping("/")

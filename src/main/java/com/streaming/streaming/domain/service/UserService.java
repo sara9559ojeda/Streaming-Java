@@ -19,16 +19,16 @@ public class UserService {
         return userRepository.getAll();
     }
 
-    public UserDTO guardar() {
-        return userRepository.save(null);
+    public UserDTO guardar(UserDTO userDTO) {
+        return userRepository.save(userDTO);
     }
 
-    public Optional<UserDTO> obtenerPorId() {
-        return userRepository.getById(null);
+    public Optional<UserDTO> obtenerPorId(Long id) {
+        return userRepository.getById(id);
     }
 
-    public void eliminar() {
-        userRepository.delete(null);
+    public void eliminar(Long id) {
+        userRepository.delete(id);
     }
 
     // agregar manejo de excepciones :v
