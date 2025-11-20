@@ -1,0 +1,40 @@
+name: Build and deploy JAR app to Azure Web App - Poo
+
+on:
+  push:
+    branches:
+      - master # Activa el flujo de trabajo al hacer push a la rama master
+
+env:
+  AZURE_WEBAPP_NAME: <YOUR_AZURE_WEBAPP_NAME>    # Por ejemplo: streaming-poo-app
+  JAVA_VERSION: '17'
+  PACKAGING: 'jar'
+  JAVA_OPTIONS: '-jar'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Configura Java 17, CRUCIAL para evitar errores de compilación
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      # Compila y empaqueta la aplicación con Maven
+      - name: Build with Maven
+        run: mvn clean install -DskipTests
+
+      # Despliega el JAR compilado a Azure Web App
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          # Sustituye esto por tu nombre real de Web App
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          # El archivo JAR generado por Spring Boot y Maven
+          package: '${{ github.workspace }}/target/*.jar'
+          # Secret de credenciales de Azure
+          publish-profile: ${{ secrets.AZURE_CREDENTIALS_SECRET }}
